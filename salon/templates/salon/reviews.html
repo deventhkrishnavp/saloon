@@ -1,0 +1,202 @@
+{% extends 'salon/base.html' %}
+{% load static %}
+{% block title %}Reviews – Groom Studio, Ashikinte Kada{% endblock %}
+{% block meta_desc %}Read real customer reviews for Groom Studio. Rated 5.0 stars on Google with 49+ happy client reviews.{% endblock %}
+
+{% block content %}
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="gs-container">
+    <span class="section-tag">What Clients Say</span>
+    <h1>Customer Reviews</h1>
+    <p>Rated 5.0 ★ on Google — read why our clients love Groom Studio.</p>
+    <nav class="breadcrumb">
+      <a href="{% url 'home' %}">Home</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span>Reviews</span>
+    </nav>
+  </div>
+</section>
+
+<!-- Rating Summary -->
+<section class="gs-section-sm" style="background: var(--surface);">
+  <div class="gs-container text-center">
+    <div class="review-avg-score fade-in" style="max-width: 380px; margin: 0 auto 40px;">
+      <div class="score-num">5.0</div>
+      <div class="score-stars">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <div class="score-total">Based on 49+ Google Reviews</div>
+    </div>
+
+    <!-- Rating Bars -->
+    <div style="max-width: 500px; margin: 0 auto;" class="fade-in">
+      {% for star, pct in "5,95|4,4|3,1|2,0|1,0"|split:"|" %}
+      {% endfor %}
+      <div style="display: flex; flex-direction: column; gap: 10px; text-align: left;">
+        {% for star, pct in "5,95|4,4|3,1|2,0|1,0"|split:"|" %}{% endfor %}
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:.85rem;font-weight:600;min-width:20px;">5★</span>
+          <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden;">
+            <div style="width:95%;height:100%;background:var(--teal);border-radius:4px;"></div>
+          </div>
+          <span style="font-size:.82rem;color:var(--text-light);min-width:30px;">95%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:.85rem;font-weight:600;min-width:20px;">4★</span>
+          <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden;">
+            <div style="width:4%;height:100%;background:var(--teal);border-radius:4px;"></div>
+          </div>
+          <span style="font-size:.82rem;color:var(--text-light);min-width:30px;">4%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:.85rem;font-weight:600;min-width:20px;">3★</span>
+          <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden;">
+            <div style="width:1%;height:100%;background:var(--teal);border-radius:4px;"></div>
+          </div>
+          <span style="font-size:.82rem;color:var(--text-light);min-width:30px;">1%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:.85rem;font-weight:600;min-width:20px;">2★</span>
+          <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden;">
+            <div style="width:0%;height:100%;background:var(--teal);border-radius:4px;"></div>
+          </div>
+          <span style="font-size:.82rem;color:var(--text-light);min-width:30px;">0%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:.85rem;font-weight:600;min-width:20px;">1★</span>
+          <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden;">
+            <div style="width:0%;height:100%;background:var(--teal);border-radius:4px;"></div>
+          </div>
+          <span style="font-size:.82rem;color:var(--text-light);min-width:30px;">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews Grid -->
+<section class="gs-section">
+  <div class="gs-container">
+    <div class="reviews-grid">
+      {% if all_reviews %}
+        {% for review in all_reviews %}
+        <div class="review-card fade-in">
+          <div class="review-stars">
+            {% for i in "12345" %}
+              {% if forloop.counter <= review.rating %}
+                <i class="fa-solid fa-star"></i>
+              {% else %}
+                <i class="fa-regular fa-star"></i>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <p class="review-text">"{{ review.text }}"</p>
+          <div class="review-author">
+            <div class="author-avatar">
+              {% if review.avatar %}
+                <img src="{{ review.avatar.url }}" alt="{{ review.name }}">
+              {% else %}
+                {{ review.name|first }}
+              {% endif %}
+            </div>
+            <div>
+              <div class="author-name">{{ review.name }}</div>
+              <div class="author-role">{{ review.role }}</div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <!-- Default reviews -->
+        {% for review in "Arun Kumar,Best haircut I've ever had! Very professional and clean atmosphere. The barber understood exactly what I wanted. Highly recommend Groom Studio!|Rahul Menon,Amazing beard shaping and fade. The staff are super friendly and the place is very neat. Perfect salon for men in Ashikinte Kada!|Siddharth V,Great value for money! The hair color turned out better than I expected. Will definitely come back again and again.|Vibin Nair,Very skilled barbers. The scalp massage was so relaxing! The salon feels premium without being expensive. Love this place!|Prasanth Joy,Clean fast and spot on every single time. Groom Studio has been my go-to salon for years. Cannot recommend enough!|Mohammed Ashiq,Excellent service and a very warm welcome. The kids haircut section is great too. My son loved it here!|Anand Pillai,Top-notch haircut and beard trim. The place is immaculately clean. Pricing is very fair for the quality you get.|Jithin Raju,Friendly staff great ambiance and awesome fade. I drive all the way from Ernakulam just for a haircut here — worth every km!" %}
+        {% endfor %}
+        {% with default_reviews="Arun Kumar,Best haircut I've ever had! Very professional and clean atmosphere. The barber understood exactly what I wanted. Highly recommend Groom Studio!;Rahul Menon,Amazing beard shaping and fade. The staff are super friendly and the place is very neat. Perfect salon for men in Ashikinte Kada!;Siddharth V,Great value for money! The hair color turned out better than I expected. Will definitely come back again and again.;Vibin Nair,Very skilled barbers. The scalp massage was so relaxing! The salon feels premium without being expensive. Love this place!;Prasanth Joy,Clean, fast, and spot on every single time. Groom Studio has been my go-to salon for years. Cannot recommend enough!;Mohammed Ashiq,Excellent service and a very warm welcome. The kids haircut section is great too. My son loved it here!;Anand Pillai,Top-notch haircut and beard trim. The place is immaculately clean. Pricing is very fair for the quality you get.;Jithin Raju,Friendly staff, great ambiance and an awesome fade. I drive all the way from Ernakulam just for a haircut here — worth every km!" %}
+
+        <div class="review-card fade-in delay-1">
+          <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="review-text">"Best haircut I've ever had! Very professional and clean atmosphere. The barber understood exactly what I wanted. Highly recommend Groom Studio!"</p>
+          <div class="review-author">
+            <div class="author-avatar">A</div>
+            <div><div class="author-name">Arun Kumar</div><div class="author-role">Regular Customer</div></div>
+          </div>
+        </div>
+        <div class="review-card fade-in delay-2">
+          <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="review-text">"Amazing beard shaping and fade. The staff are super friendly and the place is very neat. Perfect salon for men in Ashikinte Kada!"</p>
+          <div class="review-author">
+            <div class="author-avatar">R</div>
+            <div><div class="author-name">Rahul Menon</div><div class="author-role">Loyal Client</div></div>
+          </div>
+        </div>
+        <div class="review-card fade-in delay-3">
+          <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="review-text">"Great value for money! The hair color turned out better than I expected. Will definitely come back again and again. Five stars!"</p>
+          <div class="review-author">
+            <div class="author-avatar">S</div>
+            <div><div class="author-name">Siddharth V</div><div class="author-role">Happy Client</div></div>
+          </div>
+        </div>
+        <div class="review-card fade-in delay-4">
+          <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="review-text">"Very skilled barbers. The scalp massage was so relaxing! The salon feels premium without being expensive. Love this place — my favourite!"</p>
+          <div class="review-author">
+            <div class="author-avatar">V</div>
+            <div><div class="author-name">Vibin Nair</div><div class="author-role">Regular Customer</div></div>
+          </div>
+        </div>
+        <div class="review-card fade-in delay-5">
+          <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="review-text">"Clean, fast, and spot on every single time. Groom Studio has been my go-to salon for years. Can't recommend enough — outstanding service!"</p>
+          <div class="review-author">
+            <div class="author-avatar">P</div>
+            <div><div class="author-name">Prasanth Joy</div><div class="author-role">Loyal Client</div></div>
+          </div>
+        </div>
+        <div class="review-card fade-in delay-1">
+          <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="review-text">"Excellent service and a very warm welcome. The kids haircut section is great too — my son loved it! Best salon experience in Ashikinte Kada."</p>
+          <div class="review-author">
+            <div class="author-avatar">M</div>
+            <div><div class="author-name">Mohammed Ashiq</div><div class="author-role">Family Customer</div></div>
+          </div>
+        </div>
+        <div class="review-card fade-in delay-2">
+          <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="review-text">"Top-notch haircut and beard trim. The place is immaculately clean. Pricing is very fair for the quality you get here. Absolutely brilliant!"</p>
+          <div class="review-author">
+            <div class="author-avatar">A</div>
+            <div><div class="author-name">Anand Pillai</div><div class="author-role">Happy Client</div></div>
+          </div>
+        </div>
+        <div class="review-card fade-in delay-3">
+          <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="review-text">"Friendly staff, great ambiance and an awesome fade. I drive all the way from Ernakulam just for a haircut here. Worth every kilometre!"</p>
+          <div class="review-author">
+            <div class="author-avatar">J</div>
+            <div><div class="author-name">Jithin Raju</div><div class="author-role">Loyal Client</div></div>
+          </div>
+        </div>
+        {% endwith %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Leave Review CTA -->
+<section class="gs-section-sm" style="background: var(--teal-light); text-align: center; border-top: 1px solid var(--border);">
+  <div class="gs-container">
+    <h2 class="fade-in" style="font-size: 1.8rem; margin-bottom: 10px; color: var(--teal-dark);">Had a Great Experience?</h2>
+    <p class="fade-in" style="color: var(--text-mid); margin-bottom: 24px;">Share your experience on Google and help others discover Groom Studio.</p>
+    <a href="https://g.page/r/groom-studio-review" target="_blank" class="btn btn-primary fade-in">
+      <i class="fa-brands fa-google"></i> Leave a Google Review
+    </a>
+  </div>
+</section>
+
+{% endblock %}

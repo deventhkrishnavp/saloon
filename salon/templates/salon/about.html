@@ -1,0 +1,125 @@
+{% extends 'salon/base.html' %}
+{% load static %}
+{% block title %}About Us – Groom Studio, Ashikinte Kada{% endblock %}
+{% block meta_desc %}Learn about Groom Studio, your trusted men's salon in Ashikinte Kada. Meet our team and discover our story.{% endblock %}
+
+{% block content %}
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="gs-container">
+    <span class="section-tag">Our Story</span>
+    <h1>About Groom Studio</h1>
+    <p>Where passion meets precision — crafting looks that last.</p>
+    <nav class="breadcrumb">
+      <a href="{% url 'home' %}">Home</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span>About</span>
+    </nav>
+  </div>
+</section>
+
+<!-- About Main -->
+<section class="gs-section">
+  <div class="gs-container">
+    <div class="about-grid">
+      <!-- Image -->
+      <div class="fade-in-left">
+        <div class="about-image-wrap">
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80" alt="Groom Studio barber at work">
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="fade-in-right">
+        <span class="section-tag">Who We Are</span>
+        <h2 class="section-heading">Ashikinte Kada's Favourite Men's Salon</h2>
+        {% if settings.about_text %}
+        <p style="font-size: 1.02rem; line-height: 1.8; margin-bottom: 20px;">{{ settings.about_text }}</p>
+        {% else %}
+        <p style="font-size: 1.02rem; line-height: 1.8; margin-bottom: 20px;">
+          Groom Studio is a premium men's salon located in the heart of Ashikinte Kada, Kerala. Founded with a passion for style and precision, we have been the go-to destination for men who care about how they look and feel.
+        </p>
+        <p style="font-size: 1.02rem; line-height: 1.8; margin-bottom: 24px;">
+          Our team of skilled barbers combines traditional techniques with modern trends to deliver haircuts, beard grooming, and treatments that exceed your expectations every time. We believe a great haircut is more than just a cut — it's a confidence booster.
+        </p>
+        {% endif %}
+
+        <!-- Stats -->
+        <div class="about-stats fade-in">
+          <div class="about-stat">
+            <div class="about-stat-num">{{ settings.years_experience }}+</div>
+            <div class="about-stat-label">Years Experience</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">{{ settings.total_clients }}+</div>
+            <div class="about-stat-label">Happy Clients</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">5.0★</div>
+            <div class="about-stat-label">Google Rating</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">49+</div>
+            <div class="about-stat-label">Google Reviews</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap;">
+          <a href="{% url 'contact' %}" class="btn btn-primary">
+            <i class="fa-solid fa-calendar-check"></i> Book Appointment
+          </a>
+          <a href="{% url 'services' %}" class="btn btn-outline">
+            <i class="fa-solid fa-scissors"></i> Our Services
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Values -->
+<section class="gs-section why-section">
+  <div class="gs-container">
+    <div class="text-center fade-in" style="margin-bottom: 48px;">
+      <span class="section-tag">Our Values</span>
+      <h2 class="section-heading">What We Stand For</h2>
+      <p class="section-sub">Every service at Groom Studio is guided by our core principles.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in delay-1">
+        <div class="service-icon"><i class="fa-solid fa-medal"></i></div>
+        <h3>Excellence</h3>
+        <p>We never compromise on quality. Every haircut and treatment is delivered with full attention to detail and craftsmanship.</p>
+      </div>
+      <div class="service-card fade-in delay-2">
+        <div class="service-icon"><i class="fa-solid fa-heart"></i></div>
+        <h3>Care</h3>
+        <p>We genuinely care about our clients. Your satisfaction and comfort are at the heart of everything we do.</p>
+      </div>
+      <div class="service-card fade-in delay-3">
+        <div class="service-icon"><i class="fa-solid fa-leaf"></i></div>
+        <h3>Hygiene</h3>
+        <p>Spotless workstations, sterilized tools, and fresh towels for every client, always. Your health is our responsibility.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Strip -->
+<section class="gs-section-sm" style="background: var(--teal); text-align: center;">
+  <div class="gs-container">
+    <h2 style="color: white; margin-bottom: 12px;" class="fade-in">Come Visit Us Today</h2>
+    <p style="color: rgba(255,255,255,.85); margin-bottom: 28px;" class="fade-in">Ashikinte Kada, Kerala | Mon–Sat: 9 AM – 9 PM | Sun: 8 AM – 10 PM</p>
+    <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;" class="fade-in">
+      <a href="{% url 'contact' %}" class="btn btn-white">
+        <i class="fa-solid fa-location-dot"></i> Get Directions
+      </a>
+      <a href="https://wa.me/919876543210" class="btn" style="border: 2px solid white; color: white;" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

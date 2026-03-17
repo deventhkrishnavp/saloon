@@ -1,0 +1,24 @@
+{% extends 'salon/base.html' %}
+{% block title %}Booking Confirmed – Groom Studio{% endblock %}
+{% block content %}
+<section class="gs-section" style="text-align: center; min-height: 60vh; display: flex; align-items: center;">
+  <div class="gs-container">
+    <div style="max-width: 520px; margin: 0 auto; padding: 48px 32px; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
+      <div style="width: 80px; height: 80px; background: var(--teal-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2.2rem; color: var(--teal);">
+        <i class="fa-solid fa-calendar-check"></i>
+      </div>
+      <h2 style="margin-bottom: 12px; color: var(--teal);">Appointment Booked!</h2>
+      <p style="color: var(--text-light); margin-bottom: 28px; line-height: 1.7;">
+        Thank you! Your appointment has been successfully submitted. We'll confirm your slot via phone shortly.<br>
+        Looking forward to seeing you at <strong>Groom Studio</strong>!
+      </p>
+      <a href="{% url 'home' %}" class="btn btn-primary" style="margin-right: 12px;">
+        <i class="fa-solid fa-house"></i> Back to Home
+      </a>
+      <a href="{% url 'services' %}" class="btn btn-outline">
+        <i class="fa-solid fa-scissors"></i> Our Services
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

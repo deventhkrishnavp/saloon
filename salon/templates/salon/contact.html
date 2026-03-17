@@ -1,0 +1,146 @@
+{% extends 'salon/base.html' %}
+{% load static %}
+{% block title %}Contact Us – Groom Studio, Ashikinte Kada{% endblock %}
+{% block meta_desc %}Contact Groom Studio in Ashikinte Kada. Book appointments, call us, WhatsApp us, or send a message through our contact form.{% endblock %}
+
+{% block content %}
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="gs-container">
+    <span class="section-tag">Get In Touch</span>
+    <h1>Contact Us</h1>
+    <p>We'd love to hear from you — book an appointment or just say hello.</p>
+    <nav class="breadcrumb">
+      <a href="{% url 'home' %}">Home</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span>Contact</span>
+    </nav>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="gs-section">
+  <div class="gs-container">
+    <div class="contact-grid">
+      <!-- Left: Contact Info -->
+      <div class="fade-in-left">
+        <div class="contact-info-card">
+          <h3>Visit Us</h3>
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <div class="ci-label">Address</div>
+                <div class="ci-value">Ashikinte Kada, Kerala, India</div>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon"><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <div class="ci-label">Phone</div>
+                <div class="ci-value"><a href="tel:+919876543210">+91 98765 43210</a></div>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <div class="ci-label">Email</div>
+                <div class="ci-value"><a href="mailto:groomstudio@email.com">groomstudio@email.com</a></div>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon"><i class="fa-solid fa-clock"></i></div>
+              <div>
+                <div class="ci-label">Working Hours</div>
+                <div class="ci-value">Mon–Sat: 9:00 AM – 9:00 PM</div>
+                <div class="ci-value" style="font-weight: 400; color: var(--text-light); font-size: .85rem;">Sun: 8:00 AM – 10:00 PM</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WhatsApp button -->
+          <a href="https://wa.me/919876543210" class="contact-wa-btn" target="_blank">
+            <i class="fa-brands fa-whatsapp fa-lg"></i>
+            Chat on WhatsApp
+          </a>
+        </div>
+
+        <!-- Quick Booking Card -->
+        <div class="contact-info-card" style="margin-top: 24px; background: var(--teal); color: white;">
+          <h3 style="color: white; margin-bottom: 16px;">Business Hours</h3>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; font-size: .9rem; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,.2);">
+              <span style="color: rgba(255,255,255,.85);">Monday – Saturday</span>
+              <strong style="color: white;">9 AM – 9 PM</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: .9rem; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,.2);">
+              <span style="color: rgba(255,255,255,.85);">Sunday</span>
+              <strong style="color: white;">8 AM – 10 PM</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: .9rem;">
+              <span style="color: rgba(255,255,255,.85);">Public Holidays</span>
+              <strong style="color: #86efac;">Open</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Contact Form -->
+      <div class="fade-in-right">
+        <div class="contact-form-card">
+          <h3>Send a Message</h3>
+          <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="form-row">
+              <div class="form-group">
+                <label for="id_name">Full Name <span style="color: var(--teal);">*</span></label>
+                {{ form.name }}
+                {% if form.name.errors %}<small style="color:#ef4444;">{{ form.name.errors.0 }}</small>{% endif %}
+              </div>
+              <div class="form-group">
+                <label for="id_phone">Phone Number</label>
+                {{ form.phone }}
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="id_email">Email Address <span style="color: var(--teal);">*</span></label>
+              {{ form.email }}
+              {% if form.email.errors %}<small style="color:#ef4444;">{{ form.email.errors.0 }}</small>{% endif %}
+            </div>
+            <div class="form-group">
+              <label for="id_message">Your Message <span style="color: var(--teal);">*</span></label>
+              {{ form.message }}
+              {% if form.message.errors %}<small style="color:#ef4444;">{{ form.message.errors.0 }}</small>{% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+              <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Google Map -->
+<section style="padding-bottom: 80px;">
+  <div class="gs-container">
+    <div class="text-center fade-in" style="margin-bottom: 32px;">
+      <span class="section-tag">Find Us</span>
+      <h2 class="section-heading">Our Location</h2>
+      <p class="section-sub">Conveniently located at Ashikinte Kada, Kerala. Come visit us!</p>
+    </div>
+    <div class="map-container fade-in">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.5870000000002!2d76.33!3d10.27!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080fce7ab66ea1%3A0x23f1e3b7e6d7a2ee!2sAshikinte%20Kada!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Groom Studio Location">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

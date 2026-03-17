@@ -1,0 +1,162 @@
+{% extends 'salon/base.html' %}
+{% load static %}
+{% block title %}Our Services – Groom Studio, Ashikinte Kada{% endblock %}
+{% block meta_desc %}Explore Groom Studio's full range of premium men's grooming services including haircuts, beard trims, facials, and more.{% endblock %}
+
+{% block content %}
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="gs-container">
+    <span class="section-tag">What We Offer</span>
+    <h1>Our Services</h1>
+    <p>Premium grooming services for the modern man — affordable, skilled, and professional.</p>
+    <nav class="breadcrumb">
+      <a href="{% url 'home' %}">Home</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span>Services</span>
+    </nav>
+  </div>
+</section>
+
+<!-- Services Grid -->
+<section class="gs-section">
+  <div class="gs-container">
+    <div class="services-grid">
+      {% if all_services %}
+        {% for service in all_services %}
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <i class="fa-solid {{ service.icon }}"></i>
+          </div>
+          <h3>{{ service.name }}</h3>
+          <p>{{ service.description }}</p>
+          {% if service.price %}
+          <div class="service-price" style="margin-bottom: 16px;">₹{{ service.price }} <span>onwards</span></div>
+          {% endif %}
+          <a href="{% url 'contact' %}" class="btn btn-outline" style="padding: 10px 22px; font-size: .85rem;">
+            <i class="fa-solid fa-calendar-check"></i> Book Now
+          </a>
+        </div>
+        {% endfor %}
+      {% else %}
+        <!-- Default services -->
+        {% with default_services="scissors,Haircut,Classic to modern – fade, undercut, textured crop, or your own style. Every cut is personalised to your face shape.|150,user,Beard Trim & Shape,Sharp beard shaping, lineup, and fade for a clean polished appearance that complements your haircut.|100,spa,Facial Treatment,Deep-cleansing facials using premium skincare products for fresh, glowing, healthy skin.|300,magic,Hair Color,Vibrant color, highlights, or balayage by professional colourists using high-quality hair dye.|500,droplet,Scalp Treatment,Nourishing scalp massages and treatments to promote hair growth and eliminate dandruff.|250,star,Hair Spa,Complete hair spa to strengthen, add shine, and restore moisture for healthy, lustrous hair.|400,hand-sparkles,De-Tan Treatment,Remove sun tan and revive your natural skin tone with our effective de-tan treatment.|200,wind,Hair Straightening,Smoothening and keratin treatments for frizz-free, straight, manageable hair.|800" %}
+        <div class="service-card fade-in delay-1">
+          <div class="service-icon"><i class="fa-solid fa-scissors"></i></div>
+          <h3>Haircut</h3>
+          <p>Classic to modern — fade, undercut, textured crop, or your own style. Every cut is personalised to your face shape and preference.</p>
+          <div class="service-price" style="margin-bottom: 16px;">₹150 <span>onwards</span></div>
+          <a href="{% url 'contact' %}" class="btn btn-outline" style="padding: 10px 22px; font-size: .85rem;"><i class="fa-solid fa-calendar-check"></i> Book Now</a>
+        </div>
+        <div class="service-card fade-in delay-2">
+          <div class="service-icon"><i class="fa-solid fa-user"></i></div>
+          <h3>Beard Trim & Shape</h3>
+          <p>Sharp beard shaping, lineup, and fade for a clean polished look that complements your style perfectly every time.</p>
+          <div class="service-price" style="margin-bottom: 16px;">₹100 <span>onwards</span></div>
+          <a href="{% url 'contact' %}" class="btn btn-outline" style="padding: 10px 22px; font-size: .85rem;"><i class="fa-solid fa-calendar-check"></i> Book Now</a>
+        </div>
+        <div class="service-card fade-in delay-3">
+          <div class="service-icon"><i class="fa-solid fa-spa"></i></div>
+          <h3>Facial Treatment</h3>
+          <p>Deep-cleansing facials using premium skincare products for fresh, glowing, and healthy skin that lasts all day.</p>
+          <div class="service-price" style="margin-bottom: 16px;">₹300 <span>onwards</span></div>
+          <a href="{% url 'contact' %}" class="btn btn-outline" style="padding: 10px 22px; font-size: .85rem;"><i class="fa-solid fa-calendar-check"></i> Book Now</a>
+        </div>
+        <div class="service-card fade-in delay-4">
+          <div class="service-icon"><i class="fa-solid fa-magic"></i></div>
+          <h3>Hair Color</h3>
+          <p>Vibrant color, highlights, or balayage by professional colourists. Transform your look with precision and style.</p>
+          <div class="service-price" style="margin-bottom: 16px;">₹500 <span>onwards</span></div>
+          <a href="{% url 'contact' %}" class="btn btn-outline" style="padding: 10px 22px; font-size: .85rem;"><i class="fa-solid fa-calendar-check"></i> Book Now</a>
+        </div>
+        <div class="service-card fade-in delay-5">
+          <div class="service-icon"><i class="fa-solid fa-droplet"></i></div>
+          <h3>Scalp Treatment</h3>
+          <p>Nourishing scalp massages and treatments to promote hair growth, eliminate dandruff, and restore scalp health.</p>
+          <div class="service-price" style="margin-bottom: 16px;">₹250 <span>onwards</span></div>
+          <a href="{% url 'contact' %}" class="btn btn-outline" style="padding: 10px 22px; font-size: .85rem;"><i class="fa-solid fa-calendar-check"></i> Book Now</a>
+        </div>
+        <div class="service-card fade-in delay-1">
+          <div class="service-icon"><i class="fa-solid fa-star"></i></div>
+          <h3>Hair Spa</h3>
+          <p>Complete hair spa experience to strengthen, add shine, and restore moisture for healthy, lustrous, beautiful hair.</p>
+          <div class="service-price" style="margin-bottom: 16px;">₹400 <span>onwards</span></div>
+          <a href="{% url 'contact' %}" class="btn btn-outline" style="padding: 10px 22px; font-size: .85rem;"><i class="fa-solid fa-calendar-check"></i> Book Now</a>
+        </div>
+        <div class="service-card fade-in delay-2">
+          <div class="service-icon"><i class="fa-solid fa-hand-sparkles"></i></div>
+          <h3>De-Tan Treatment</h3>
+          <p>Remove sun tan and revive your natural skin tone with our effective, soothing de-tan treatment for lasting results.</p>
+          <div class="service-price" style="margin-bottom: 16px;">₹200 <span>onwards</span></div>
+          <a href="{% url 'contact' %}" class="btn btn-outline" style="padding: 10px 22px; font-size: .85rem;"><i class="fa-solid fa-calendar-check"></i> Book Now</a>
+        </div>
+        <div class="service-card fade-in delay-3">
+          <div class="service-icon"><i class="fa-solid fa-wind"></i></div>
+          <h3>Hair Straightening</h3>
+          <p>Smoothening and keratin treatments for frizz-free, straight, and highly manageable hair that's easy to style.</p>
+          <div class="service-price" style="margin-bottom: 16px;">₹800 <span>onwards</span></div>
+          <a href="{% url 'contact' %}" class="btn btn-outline" style="padding: 10px 22px; font-size: .85rem;"><i class="fa-solid fa-calendar-check"></i> Book Now</a>
+        </div>
+        <div class="service-card fade-in delay-4">
+          <div class="service-icon"><i class="fa-solid fa-child"></i></div>
+          <h3>Kids Haircut</h3>
+          <p>Fun, friendly, and painless haircuts for the little ones! We make every kid feel comfortable and leave looking great.</p>
+          <div class="service-price" style="margin-bottom: 16px;">₹100 <span>onwards</span></div>
+          <a href="{% url 'contact' %}" class="btn btn-outline" style="padding: 10px 22px; font-size: .85rem;"><i class="fa-solid fa-calendar-check"></i> Book Now</a>
+        </div>
+        {% endwith %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Booking Form -->
+<section class="gs-section booking-section">
+  <div class="gs-container">
+    <div class="text-center" style="color: white; margin-bottom: 40px;">
+      <h2 style="color: white;" class="fade-in">Book Your Appointment</h2>
+      <p style="color: rgba(255,255,255,.85); margin-top: 10px;" class="fade-in">Fill out the form and we'll confirm your slot shortly.</p>
+    </div>
+    <div class="booking-card fade-in">
+      <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="booking_submit" value="1">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>{{ booking_form.name }}
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>{{ booking_form.phone }}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Service</label>{{ booking_form.service }}
+          </div>
+          <div class="form-group">
+            <label>Email (optional)</label>{{ booking_form.email }}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date</label>{{ booking_form.date }}
+          </div>
+          <div class="form-group">
+            <label>Time</label>{{ booking_form.time }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Notes</label>{{ booking_form.notes }}
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary" style="min-width: 200px;">
+            <i class="fa-solid fa-calendar-check"></i> Confirm Booking
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

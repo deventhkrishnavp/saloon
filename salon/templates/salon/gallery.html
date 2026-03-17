@@ -1,0 +1,116 @@
+{% extends 'salon/base.html' %}
+{% load static %}
+{% block title %}Gallery – Groom Studio, Ashikinte Kada{% endblock %}
+{% block meta_desc %}Browse the Groom Studio gallery — see our best haircuts, beard styles, and grooming transformations.{% endblock %}
+
+{% block content %}
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="gs-container">
+    <span class="section-tag">Our Work</span>
+    <h1>Gallery</h1>
+    <p>Real transformations by our skilled barbers — browse and be inspired.</p>
+    <nav class="breadcrumb">
+      <a href="{% url 'home' %}">Home</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span>Gallery</span>
+    </nav>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="gs-section">
+  <div class="gs-container">
+
+    <!-- Filter Pills -->
+    <div class="gallery-filters fade-in">
+      <a href="{% url 'gallery' %}" class="filter-pill {% if not selected_category %}active{% endif %}">All</a>
+      {% for cat in categories %}
+      <a href="?category={{ cat }}" class="filter-pill {% if selected_category == cat %}active{% endif %}">
+        {{ cat|capfirst }}
+      </a>
+      {% endfor %}
+      {% if not categories %}
+        <a href="#" class="filter-pill active">All</a>
+        <a href="?category=haircut" class="filter-pill">Haircut</a>
+        <a href="?category=beard" class="filter-pill">Beard</a>
+        <a href="?category=color" class="filter-pill">Color</a>
+        <a href="?category=facial" class="filter-pill">Facial</a>
+      {% endif %}
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+      {% if items %}
+        {% for item in items %}
+        <div class="gallery-item fade-in">
+          <img src="{{ item.image.url }}" alt="{{ item.caption }}">
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          {% if item.caption %}<div class="gallery-caption">{{ item.caption }}</div>{% endif %}
+        </div>
+        {% endfor %}
+      {% else %}
+        <!-- Default gallery images -->
+        <div class="gallery-item fade-in delay-1">
+          <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&q=80" alt="Classic Fade">
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          <div class="gallery-caption">Classic Fade Haircut</div>
+        </div>
+        <div class="gallery-item fade-in delay-2">
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Modern Haircut">
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          <div class="gallery-caption">Modern Textured Cut</div>
+        </div>
+        <div class="gallery-item fade-in delay-3">
+          <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80" alt="Beard Trim">
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          <div class="gallery-caption">Beard Shaping</div>
+        </div>
+        <div class="gallery-item fade-in delay-4">
+          <img src="https://images.unsplash.com/photo-1583195764036-3d8b7d3b5e51?w=600&q=80" alt="Style">
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          <div class="gallery-caption">Style & Finish</div>
+        </div>
+        <div class="gallery-item fade-in delay-1">
+          <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&q=80" alt="Skin Fade">
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          <div class="gallery-caption">Skin Fade</div>
+        </div>
+        <div class="gallery-item fade-in delay-2">
+          <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=600&q=80" alt="Expert Grooming">
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          <div class="gallery-caption">Expert Grooming</div>
+        </div>
+        <div class="gallery-item fade-in delay-3">
+          <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&q=80" alt="Premium Finish">
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          <div class="gallery-caption">Premium Finish</div>
+        </div>
+        <div class="gallery-item fade-in delay-4">
+          <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80" alt="Hair Color">
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          <div class="gallery-caption">Hair Color Work</div>
+        </div>
+        <div class="gallery-item fade-in delay-5">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Portrait">
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          <div class="gallery-caption">After the Cut</div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="gs-section-sm" style="background: var(--surface); text-align: center; border-top: 1px solid var(--border);">
+  <div class="gs-container">
+    <h2 class="fade-in" style="font-size: 1.8rem; margin-bottom: 12px;">Like What You See?</h2>
+    <p class="fade-in" style="color: var(--text-light); margin-bottom: 24px;">Book your appointment and get your own amazing transformation at Groom Studio.</p>
+    <a href="{% url 'contact' %}" class="btn btn-primary fade-in">
+      <i class="fa-solid fa-calendar-check"></i> Book Now
+    </a>
+  </div>
+</section>
+
+{% endblock %}

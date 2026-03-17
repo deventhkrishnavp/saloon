@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Groom Studio – Premium Men's Salon, Ashikinte Kada{% endblock %}</title>
+  <meta name="description"
+    content="{% block meta_desc %}Groom Studio is a premier men's salon in Ashikinte Kada, offering professional haircuts, beard trims, and grooming services.{% endblock %}">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Owl Carousel CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'salon/css/style.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="gs-navbar" id="navbar">
+    <div class="gs-container navbar-inner">
+      <!-- Logo -->
+      <a href="{% url 'home' %}" class="navbar-logo">
+        <img src="{% static 'salon/images/logo.png' %}" alt="Groom Studio Logo" class="nav-logo-img">
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="{% url 'home' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
+        <li><a href="{% url 'about' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a></li>
+        <li><a href="{% url 'services' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'services' %}active{% endif %}">Services</a></li>
+        <li><a href="{% url 'gallery' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">Gallery</a></li>
+        <li><a href="{% url 'reviews' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'reviews' %}active{% endif %}">Reviews</a></li>
+        <li><a href="{% url 'contact' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a></li>
+        <li><a href="{% url 'contact' %}" class="btn-book-nav">Book Now</a></li>
+      </ul>
+
+      <!-- Hamburger -->
+      <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Django Messages -->
+  {% if messages %}
+  <div class="gs-messages">
+    {% for message in messages %}
+    <div class="gs-alert gs-alert-{{ message.tags }}">
+      <i class="fa-solid fa-circle-check"></i> {{ message }}
+      <button class="alert-close" onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- ===================== MAIN CONTENT ===================== -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="gs-footer">
+    <div class="gs-container footer-grid">
+      <div class="footer-col">
+        <a href="{% url 'home' %}" class="footer-logo">
+          <img src="{% static 'salon/images/logo.png' %}" alt="Groom Studio Logo" class="footer-logo-img">
+        </a>
+        <p class="footer-tagline">Style that defines you. Premium grooming for the modern man.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://wa.me/919876543210" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="{% url 'home' %}"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+          <li><a href="{% url 'about' %}"><i class="fa-solid fa-chevron-right"></i> About Us</a></li>
+          <li><a href="{% url 'services' %}"><i class="fa-solid fa-chevron-right"></i> Services</a></li>
+          <li><a href="{% url 'gallery' %}"><i class="fa-solid fa-chevron-right"></i> Gallery</a></li>
+          <li><a href="{% url 'reviews' %}"><i class="fa-solid fa-chevron-right"></i> Reviews</a></li>
+          <li><a href="{% url 'contact' %}"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Contact Info -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Get In Touch</h4>
+        <ul class="footer-contact">
+          <li><i class="fa-solid fa-location-dot"></i> Ashikinte Kada, Kerala, India</li>
+          <li><a href="tel:+919876543210"><i class="fa-solid fa-phone"></i> +91 98765 43210</a></li>
+          <li><a href="mailto:groomstudio@email.com"><i class="fa-solid fa-envelope"></i> groomstudio@email.com</a></li>
+          <li><i class="fa-solid fa-clock"></i> Mon–Sat: 9:00 AM – 9:00 PM</li>
+          <li><i class="fa-solid fa-clock"></i> Sun: 8:00 AM – 10:00 PM</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="gs-container">
+        <p>&copy; 2026 Groom Studio (Ashikinte Kada). All rights reserved. Crafted with <i class="fa-solid fa-heart"
+            style="color:#0d9488;"></i></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING WHATSAPP ===================== -->
+  <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Chat with us</span>
+  </a>
+
+  <!-- ===================== SCROLL TO TOP ===================== -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- Owl Carousel JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <!-- Custom JS -->
+  <script src="{% static 'salon/js/main.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+
+</html>
